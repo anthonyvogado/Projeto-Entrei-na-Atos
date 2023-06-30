@@ -7,7 +7,6 @@ namespace BackEndAPI.Models
     public class Medicamento
     {
         [Key]
-        [JsonIgnore]
         public int MedicamentoId { get; set; }
 
         public string Nome { get; set; }
@@ -36,5 +35,7 @@ namespace BackEndAPI.Models
         public ICollection<ContraIndicadoTag>? ContraIndicadoTags { get; set; } = new List<ContraIndicadoTag>();
 
         public string Bula { get; set; }
+
+        public string PrincipioAtivo { get; set; }
     }
 }

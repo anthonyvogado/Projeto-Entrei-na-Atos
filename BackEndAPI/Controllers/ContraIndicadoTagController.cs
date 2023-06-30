@@ -47,11 +47,11 @@ namespace BackEndAPI.Controllers
             return CreatedAtAction(nameof(GetContraIndicadoTag), new { id = contraIndicadoTag.ContraIndicadoTagId }, contraIndicadoTag);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutContraIndicadoTag(int id, ContraIndicadoTag contraIndicadoTag)
+        [HttpPut]
+        public async Task<IActionResult> PutContraIndicadoTag(ContraIndicadoTag contraIndicadoTag)
         {
             var existeContraIndicadoTag = await _contexto.ContraIndicadoTags
-                .FirstOrDefaultAsync(cit => cit.ContraIndicadoTagId == id);
+                .FirstOrDefaultAsync(cit => cit.ContraIndicadoTagId == contraIndicadoTag.ContraIndicadoTagId);
 
             if (existeContraIndicadoTag == null)
             {
@@ -67,7 +67,7 @@ namespace BackEndAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContraIndicadoTagExiste(id))
+                if (!ContraIndicadoTagExiste(contraIndicadoTag.ContraIndicadoTagId))
                 {
                     return NotFound();
                 }

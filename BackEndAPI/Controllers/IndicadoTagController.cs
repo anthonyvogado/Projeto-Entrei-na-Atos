@@ -47,11 +47,11 @@ namespace BackEndAPI.Controllers
             return CreatedAtAction(nameof(GetIndicadoTag), new { id = indicadoTag.IndicadoTagId }, indicadoTag);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutIndicadoTag(int id, IndicadoTag indicadoTag)
+        [HttpPut]
+        public async Task<IActionResult> PutIndicadoTag(IndicadoTag indicadoTag)
         {
             var existeIndicadoTag = await _contexto.IndicadoTags
-                .FirstOrDefaultAsync(it => it.IndicadoTagId == id);
+                .FirstOrDefaultAsync(it => it.IndicadoTagId == indicadoTag.IndicadoTagId);
 
             if (existeIndicadoTag == null)
             {
@@ -67,7 +67,7 @@ namespace BackEndAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!IndicadoTagExiste(id))
+                if (!IndicadoTagExiste(indicadoTag.IndicadoTagId))
                 {
                     return NotFound();
                 }

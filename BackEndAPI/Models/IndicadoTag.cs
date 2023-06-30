@@ -7,7 +7,6 @@ namespace BackEndAPI.Models
     public class IndicadoTag
     {
         [Key]
-        [JsonIgnore]
         public int IndicadoTagId { get; set; }
 
         public string? Nome { get; set; }

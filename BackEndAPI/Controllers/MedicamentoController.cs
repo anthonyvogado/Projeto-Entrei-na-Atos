@@ -94,9 +94,8 @@ namespace BackEndAPI.Controllers
             return CreatedAtAction(nameof(GetMedicamento), new { id = medicamento.MedicamentoId }, medicamento);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> PutMedicamento(
-            [FromRoute] int id,
             [FromBody] Medicamento medicamento)
         {
 
@@ -105,7 +104,7 @@ namespace BackEndAPI.Controllers
                 .Include(m => m.Tipo)
                 .Include(m => m.IndicadoTags)
                 .Include(m => m.ContraIndicadoTags)
-                .FirstOrDefaultAsync(m => m.MedicamentoId == id);
+                .FirstOrDefaultAsync(m => m.MedicamentoId == medicamento.MedicamentoId);
 
             if (existeMedicamento == null)
             {
@@ -126,6 +125,7 @@ namespace BackEndAPI.Controllers
             existeMedicamento.Tipo = existeTipo;
 
             existeMedicamento.Bula = medicamento.Bula;
+            existeMedicamento.PrincipioAtivo = medicamento.PrincipioAtivo;
 
             // Atualizar as coleções IndicadoTags e ContraIndicadoTags
             /*var existeIndicadoTags = await _contexto.IndicadoTags
@@ -172,7 +172,7 @@ namespace BackEndAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MedicamentoExiste(id))
+                if (!MedicamentoExiste(medicamento.MedicamentoId))
                 {
                     return NotFound();
                 }

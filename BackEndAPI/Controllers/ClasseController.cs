@@ -53,11 +53,11 @@ namespace BackEndAPI.Controllers
             return CreatedAtAction(nameof(GetClasse), new { id = classe.ClasseId }, classe);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutClasse(int id, Classe classe)
+        [HttpPut]
+        public async Task<IActionResult> PutClasse(Classe classe)
         {
             var existeClasse = await _contexto.Classes
-               .FirstOrDefaultAsync(c => c.ClasseId == id);
+               .FirstOrDefaultAsync(c => c.ClasseId == classe.ClasseId);
 
             if (existeClasse == null)
             {
@@ -73,7 +73,7 @@ namespace BackEndAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClasseExiste(id))
+                if (!ClasseExiste(classe.ClasseId))
                 {
                     return NotFound();
                 }

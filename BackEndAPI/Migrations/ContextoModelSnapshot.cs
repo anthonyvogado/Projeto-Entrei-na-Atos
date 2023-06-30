@@ -91,6 +91,10 @@ namespace BackEndAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PrincipioAtivo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TipoId")
                         .HasColumnType("int");
 

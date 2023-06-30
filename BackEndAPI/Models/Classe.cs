@@ -7,7 +7,6 @@ namespace BackEndAPI.Models
     public class Classe
     {
         [Key]
-        [JsonIgnore]
         public int ClasseId { get; set; }
 
         public string? Nome { get; set; }

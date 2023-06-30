@@ -52,11 +52,11 @@ namespace BackEndAPI.Controllers
             return CreatedAtAction(nameof(GetTipo), new { id = tipo.TipoId }, tipo);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipo(int id, Tipo tipo)
+        [HttpPut]
+        public async Task<IActionResult> PutTipo(Tipo tipo)
         {
             var existeTipo = await _contexto.Tipos
-                .FirstOrDefaultAsync(t => t.TipoId == id);
+                .FirstOrDefaultAsync(t => t.TipoId == tipo.TipoId);
 
             if (existeTipo == null)
             {
@@ -73,7 +73,7 @@ namespace BackEndAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TipoExiste(id))
+                if (!TipoExiste(tipo.TipoId))
                 {
                     return NotFound();
                 }
