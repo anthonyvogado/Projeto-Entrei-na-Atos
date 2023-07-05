@@ -13,25 +13,22 @@ namespace BackEndAPI.Models
         public string Posologia { get; set; }
 
         [ForeignKey("Classe")]
-        public int ClasseId { get; set; }
-        [JsonIgnore]
+        public int? ClasseId { get; set; }
         public Classe? Classe { get; set; }
 
         [ForeignKey("Tipo")]
-        public int TipoId { get; set; }
-        [JsonIgnore]
+        public int? TipoId { get; set; }
+
         public Tipo? Tipo { get; set; }
 
         [NotMapped]
-        public int[] IndicadoTagIds { get; set; }
+        public int[]? IndicadoTagIds { get; set; }
 
-        [JsonIgnore]
         public ICollection<IndicadoTag>? IndicadoTags { get; set; } = new List<IndicadoTag>();
 
         [NotMapped]
-        public int[] ContraIndicadoTagIds { get; set; }
+        public int[]? ContraIndicadoTagIds { get; set; }
 
-        [JsonIgnore]
         public ICollection<ContraIndicadoTag>? ContraIndicadoTags { get; set; } = new List<ContraIndicadoTag>();
 
         public string Bula { get; set; }

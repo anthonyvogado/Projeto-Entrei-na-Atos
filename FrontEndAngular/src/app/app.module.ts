@@ -10,10 +10,22 @@ import { AppComponent } from './app.component';
 
 import { ClassesService } from './Services/classes.service';
 import { ClassesComponent } from './Components/classes/classes.component';
+import { TiposService } from './Services/tipos.service';
+import { TiposComponent } from './Components/tipos/tipos.component';
+import { IndicadotagsService } from './Services/indicadotags.service';
+import { IndicadoTagsComponent } from './Components/indicado-tags/indicado-tags.component';
+import { ContraindicadotagsService } from './Services/contraindicadotags.service';
+import { ContraindicadotagsComponent } from './Components/contraindicadotags/contraindicadotags.component';
+import { MedicamentosService } from './Services/medicamentos.service';
+import { MedicamentosComponent } from './Components/medicamentos/medicamentos.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClassesComponent
+    ClassesComponent,
+    TiposComponent,
+    IndicadoTagsComponent,
+    ContraindicadotagsComponent,
+    MedicamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +35,8 @@ import { ClassesComponent } from './Components/classes/classes.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule, ClassesService],
+  providers: [HttpClientModule, ClassesService, TiposService, IndicadotagsService,
+    ContraindicadotagsService, MedicamentosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
